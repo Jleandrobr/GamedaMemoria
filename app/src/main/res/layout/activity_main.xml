@@ -32,14 +32,6 @@
             android:progress="0"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
-<!--        <Chronometer-->
-<!--            android:id="@+id/cmTempo"-->
-<!--            android:fontFamily="monospace"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
-
-
 
     </LinearLayout>
 
