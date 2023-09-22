@@ -1,19 +1,21 @@
 package com.example.gamedamemoria
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.GridView
 import android.widget.ProgressBar
-import java.util.Collections
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var gridView: GridView
     private lateinit var progressBar : ProgressBar
     private val cards = mutableListOf<Card>()
-    private lateinit var primeiroCard: Card
-    private lateinit var segundoCard: Card
+    private lateinit var Card: Card
+    private lateinit var cardAdapter: CardAdapter
+    private var primeiroCard: Card? = null
+    private var segundoCard: Card? = null
 
 
 
@@ -21,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.progressBar = findViewById(R.id.progressBar)
-        progress() // progress bar generico
+//        this.progressBar = findViewById(R.id.progressBar)
+//        progress() // progress bar generico
 
         val cardIds = listOf(
             R.drawable.gustavo, R.drawable.gustavo,
@@ -36,39 +38,54 @@ class MainActivity : AppCompatActivity() {
         )
 
         for(id in cardIds) {
-            cards.add(Card(id))
+            cards.add(Card)
             cards.shuffle()
+        }
+
+
+
+        gridView.setOnItemClickListener { _, view, position, _ ->
+            val card = cards[position]
+            if (!card.capa) {
+                Card.revelarCard(card, view)
+                if (primeiroCard == null) {
+                    primeiroCard = card
+                } else {
+                    segundoCard = card
+                    verificarAcerto()
+                }
+            }
         }
 
 
 
 
 
-//        gridView.setOnItemClickListener{_, view, position, _ ->
-//            val card =
-//        }
-
-
-
 
 
     }
 
-
-
-
-
-
+    private fun verificarAcerto() {
+        if (primeiroCard?.id == segundoCard?.id) {
+            primeiroCard = null
+            segundoCard = null
+        } else {
+            val handler = android.os.Handler()
+            handler.postDelayed({
+                Card.EsconderCards()
+            }, 1000)
+        }
+    }
 
 
     /// função da barra de progresso
-    private fun progress(){
-        Thread{
-            while (this.progressBar.progress < 100){
-                this.progressBar.progress += 1
-                Thread.sleep(100)
-            }
-            this.progressBar.visibility = View.INVISIBLE
-        }.start()
-    }
+//    private fun progress(){
+//        Thread{
+//            while (this.progressBar.progress < 100){
+//                this.progressBar.progress += 1
+//                Thread.sleep(100)
+//            }
+//            this.progressBar.visibility = View.INVISIBLE
+//        }.start()
+//    }
 }
