@@ -1,60 +1,44 @@
 package com.example.gamedamemoria
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.GridView
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var gridView: GridView
-    private lateinit var progressBar : ProgressBar
-    private val cards = mutableListOf<Card>()
-    private lateinit var Card: Card
-    private lateinit var cardAdapter: CardAdapter
-    private var primeiroCard: Card? = null
-    private var segundoCard: Card? = null
-
+    private lateinit var jogo: Jogo
+    private lateinit var progressBar: ProgressBar
+    private lateinit var listImage: MutableList<MutableList<ImageView>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        this.jogo = Jogo()
+        this.listImage = mutableListOf()
+
 //        this.progressBar = findViewById(R.id.progressBar)
 //        progress() // progress bar generico
 
-        val cardIds = listOf(
-            R.drawable.gustavo, R.drawable.gustavo,
-            R.drawable.luiz, R.drawable.luiz,
-            R.drawable.leonidas, R.drawable.leonidas,
-            R.drawable.lafayette, R.drawable.lafayette,
-            R.drawable.valeria, R.drawable.valeria,
-            R.drawable.candido, R.drawable.candido,
-            R.drawable.fred, R.drawable.fred,
-            R.drawable.alex, R.drawable.alex,
-        )
 
-        for(id in cardIds) {
-            cards.add(Card)
-            cards.shuffle()
-        }
+        var it = this.jogo.cardIds.iterator()
 
 
-
-        gridView.setOnItemClickListener { _, view, position, _ ->
-            val card = cards[position]
-            if (!card.capa) {
-                Card.revelarCard(card, view)
-                if (primeiroCard == null) {
-                    primeiroCard = card
-                } else {
-                    segundoCard = card
-                    verificarAcerto()
-                }
+        for(i in 0..3){
+            val linha = mutableListOf<ImageView>()
+            for(j in 0..3){
+                val id = resources.getIdentifier("image${i}${j}", "id", packageName)
+                val imagem = findViewById<ImageView>(id)
+                imagem.setImageResource(it.next())
+                linha.add(imagem)
             }
+            this.listImage.add(linha)
         }
 
 
@@ -63,18 +47,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    }
 
-    private fun verificarAcerto() {
-        if (primeiroCard?.id == segundoCard?.id) {
-            primeiroCard = null
-            segundoCard = null
-        } else {
-            val handler = android.os.Handler()
-            handler.postDelayed({
-                Card.EsconderCards()
-            }, 1000)
-        }
+
+
+
+
+
+
+
     }
 
 
