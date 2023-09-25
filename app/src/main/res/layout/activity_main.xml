@@ -31,6 +31,7 @@
                 android:padding="5dp"
                 android:max="100"
                 android:progress="0"
+                android:indeterminateTint="@color/roxo"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
 
@@ -199,7 +200,7 @@
             android:text="RECOMEÇAR"
             android:textSize="10sp"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"/>
+            android:layout_height="50dp"/>
 
 
     </LinearLayout>
