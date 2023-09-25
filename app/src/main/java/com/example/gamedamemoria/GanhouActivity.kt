@@ -8,6 +8,7 @@ import android.widget.Button
 
 class GanhouActivity : AppCompatActivity() {
     private lateinit var btnReiniciar: Button
+    private lateinit var mainActivity: MainActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ganhou)
@@ -20,6 +21,7 @@ class GanhouActivity : AppCompatActivity() {
         override fun onClick(v: View?){
             val intent = Intent()
             setResult(RESULT_OK, intent)
+            mainActivity.reiniciar()
             finish()
         }
     }

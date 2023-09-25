@@ -9,6 +9,7 @@ import android.widget.Button
 
 class PerdeuActivity : AppCompatActivity() {
     private lateinit var btnReiniciar: Button
+    private lateinit var mainActivity: MainActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perdeu)
@@ -21,6 +22,7 @@ class PerdeuActivity : AppCompatActivity() {
         override fun onClick(v: View?){
             val intent = Intent()
             setResult(RESULT_OK, intent)
+            mainActivity.reiniciar()
             finish()
         }
     }

@@ -33,20 +33,20 @@ class Jogo {
         if (index >= 0 && index < cardIds.size) {
             return cardIds[index]
         }
-        return R.drawable.card // retorna o card padrão se o indice estiver fora do intervalo.
+        return R.drawable.card // retorna o card padrão se o indice estiver fora do intervalo
     }
 
-    fun checkMatch(
+    fun verificaJogo(
         card1IndexLinha: Int, card2IndexLinha: Int, card1Column: Int, card2Column: Int): Boolean {
         if (card1IndexLinha >= 0 && card2IndexLinha < cardIds.size) {
             val index1 = card1IndexLinha * 4 + card1Column // calcula o indice na lista cardIds para o primeiro card
             val index2 = card2IndexLinha * 4 + card2Column // calcula o indice na lista cardIds para o segundo card
 
-            if(cardIds[index1] == cardIds[index2]){  //se os indexs gerado forem iguais, true
+            if(cardIds[index1] == cardIds[index2]){  //se os indexs gerados forem iguais, true
                 return true
             }
         }
-        return false // retorna false se algum dos indices estiver fora do intervalo.
+        return false // retorna false se algum dos indices estiver fora do intervalo
     }
 
 
