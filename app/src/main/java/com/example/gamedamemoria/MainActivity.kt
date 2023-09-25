@@ -56,10 +56,9 @@ class MainActivity : AppCompatActivity() {
                 val imagem = findViewById<ImageView>(id)
                 val imagemId = it.next()
                 val index = i * 4 + j // calcula o indice correspondente na lista cardIds
-                // armazene o indice na ImageView como uma tag
+                // armazena o indice na ImageView como uma tag
                 imagem.tag = index
                 imagem.setImageResource(imagemId)
-                imagem.tag = imagemId
                 imagem.setImageResource(R.drawable.card)
                 imagem.setOnClickListener { OnClickItem().onItemClick(null, imagem, index, 0) }
                 linha.add(imagem)
@@ -89,7 +88,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun reiniciar() {
-
         progressBar.progress = 0
         pontos = 0
         virada = false
@@ -110,8 +108,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
         jogo.embaralhar()
-
-
+        
         val it = this.jogo.cardIds.iterator()
 
         for (i in 0..3) {
@@ -124,7 +121,6 @@ class MainActivity : AppCompatActivity() {
                 // armazene o indice na ImageView como uma tag
                 imagem.tag = index
                 imagem.setImageResource(imagemId)
-                imagem.tag = imagemId
                 imagem.setImageResource(R.drawable.card)
                 imagem.setOnClickListener { OnClickItem().onItemClick(null, imagem, index, 0) }
                 linha.add(imagem)
